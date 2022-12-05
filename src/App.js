@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
 
+import { useState } from 'react';
+
 function App() {
+
+  const COUPLES_WORDS = [
+    ["manoir", "minora"],
+    ["chat", "chien"],
+    ["romain", "romani"],
+    ["nectar", "carnet"],
+    ["encart","cazter"]
+  ]
+
+  const getRandomCouple = () => {
+    let index_word = Math.floor(Math.random() * COUPLES_WORDS.length)
+    return(COUPLES_WORDS[index_word])
+  }
+
+  const [words, setWords] = useState(getRandomCouple())
+
+  const newTest = () => {
+    setWords(getRandomCouple())
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Anagram test</h1>
+      <p>{words[0]} et {words[1]} sont des anagrammes </p>
+      <button 
+        onClick={newTest}
+      >
+        New test
+      </button>
+
     </div>
   );
 }
